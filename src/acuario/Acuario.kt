@@ -1,19 +1,19 @@
 package acuario
 
-import kotlin.math.PI
+import kotlin.math.*
 
 
-class Acuario(open var largo: Int = 100, open var ancho: Int = 20, open var alto: Int = 40) {
-
-    var volumen: Int
-        get() = ancho * alto * largo / 1000  // 1000 cm^3 = 1 l
+open class Acuario (open var largo: Int = 100, open var ancho: Int = 20, open var alto: Int = 40) {
+    open var volumen: Int
+        get() = ancho * alto * largo / 1000
         set(valor) {
-            alto = (valor * 1000) / (ancho * largo) //la formula para el volumen se invierte para hallar el alto
+            alto = (valor * 1000) / (ancho * largo)
         }
-    //open var forma = "rectangulo"
 
-    //open var agua:Double = 0.0
-        //get() = Math.floor(volumen * 0.9) //para evitar numeros decimal muy extensos se redondea con Math.floor()
+    open var forma = "rectangulo"
+
+    open var agua:Double = 0.0
+        get() = floor(volumen * 0.9) //para evitar numeros decimal muy extensos se redondea con floor()
 
     init {
         println("inicializando acuario")
@@ -28,14 +28,15 @@ class Acuario(open var largo: Int = 100, open var ancho: Int = 20, open var alto
     }
 
 
-    open fun imprimirTamano() {// La funcion se coloco en open para poder sobre escribirla en la subclase TanqueTorre
+    open fun imprimirTamano() {
+        println(forma)
         println("Ancho: $ancho cm " +
                 "Largo: $largo cm " +
                 "Alto: $alto cm ")
-        println("Volumen: $volumen l")
+        println("Volumen: $volumen l Agua: $agua l (${floor(agua/volumen*100.0)}% lleno)")//se usa la funcion floor para redondear el porcentaje
     }
 }
-/*
+
 class TanqueTorre (override var alto: Int, var diametro: Int): Acuario(alto = alto, ancho = diametro, largo = diametro) {
     override var volumen: Int
         // área elíptica = π * r1 * r2
@@ -54,5 +55,3 @@ class TanqueTorre (override var alto: Int, var diametro: Int): Acuario(alto = al
         println("Volumen: $volumen l Agua: $agua l (${Math.floor(agua/volumen*100.0)}% lleno)")
     }
 }
-
- */
