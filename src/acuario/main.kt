@@ -31,7 +31,19 @@ fun construirAcuario() {
 
 }
 
+fun crearPeces(){
+    var PezPayaso01 = PezPayaso()
+    PezPayaso01.observar()
+    PezPayaso01.comer()
+    println()//salto de linea
+    var Tiburón01 = Tiburon()
+    Tiburón01.observar()
+    Tiburón01.comer()
+}
+
 
 fun main() {
     construirAcuario()
+    crearPeces()
+
 }
